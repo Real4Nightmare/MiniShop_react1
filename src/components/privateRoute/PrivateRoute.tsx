@@ -1,6 +1,5 @@
-import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
 import { useShoppingCartContext } from "../../context/ShoppingCartContext";
-import { Outlet,Navigate } from "react-router-dom";
 function PrivateRoute(){
     const {isLogin}=useShoppingCartContext();
     return(

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/button/Button";
 import Container from "../../components/container/Container";
 import { useShoppingCartContext } from "../../context/ShoppingCartContext";
@@ -7,6 +7,7 @@ import { getProduct } from "../../services/api";
 import { IProduct } from "../../types/server";
 function Product() {
   const params = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [product, setProduct] = useState<IProduct>();
   const {
     handleDecreaseProductQty,
@@ -14,7 +15,17 @@ function Product() {
     cartItems,
     getProductQty,
     handleRemoveProduct,
+    isLogin
   } = useShoppingCartContext();
+
+  const handleAddToCart = () => {
+    if (!isLogin) {
+      navigate('/login');
+      return;
+    }
+    handleIncreaseProductQty(product!.id);
+  };
+
   useEffect(() => {
     getProduct(Number(params.id)).then((data) => {
       setProduct(data);
@@ -45,7 +56,7 @@ function Product() {
                 {getProductQty(product.id) === 0 ? (
                   <Button
                     variant="primary"
-                    onClick={() => handleIncreaseProductQty(product.id)}
+                    onClick={handleAddToCart}
                   >
                     Add to Cart
                   </Button>

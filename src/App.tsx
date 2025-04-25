@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
-import { ShoppingCartProvider, useShoppingCartContext } from "./context/ShoppingCartContext";
+import { useShoppingCartContext } from "./context/ShoppingCartContext";
 import About from "./pages/about/about";
 import Cart from "./pages/cart/Cart";
 import Home from "./pages/home/home";

@@ -92,7 +92,7 @@ export function ShoppingCartProvider({children}:ShoppingCartProvider){
     const cartQty = cartItems.reduce((qty:number, item:CartItem)=>qty+item.qty,0);
     const [isLogin,setIsLogin]=useState(false);
     return(
-        <ShoppingCartContext.Provider value={{handleLogout,handleLogin,isLogin,cartItems,cartQty,handleRemoveProduct,getProductQty,handleDecreaseProductQty,handleIncreaseProductQty,handleLogout}}>
+        <ShoppingCartContext.Provider value={{handleLogout,handleLogin,isLogin,cartItems,cartQty,handleRemoveProduct,getProductQty,handleDecreaseProductQty,handleIncreaseProductQty}}>
             {children}
         </ShoppingCartContext.Provider>
     )
